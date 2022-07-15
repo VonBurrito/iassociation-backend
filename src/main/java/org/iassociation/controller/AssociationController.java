@@ -1,7 +1,9 @@
 package org.iassociation.controller;
 
 import org.iassociation.dto.AssociationDTO;
+import org.iassociation.model.Association;
 import org.iassociation.service.itf.AssociationService;
+import org.iassociation.util.ModelMapperUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,10 +21,16 @@ import java.util.List;
 public class AssociationController {
 
     private AssociationService associationService;
+    private ModelMapperUtil modelMapperUtil;
 
     @Autowired
     public void setAssociationService(AssociationService associationService) {
         this.associationService = associationService;
+    }
+
+    @Autowired
+    public void setModelMapperUtil(ModelMapperUtil modelMapperUtil) {
+        this.modelMapperUtil = modelMapperUtil;
     }
 
     @PostMapping
@@ -48,6 +56,25 @@ public class AssociationController {
     public void deleteAssociation(@PathVariable Long id) {
         try {
             associationService.deleteAssociation(id);
+        } catch (Exception e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AssociationDTO> updateAssociation(@PathVariable Long id, @RequestBody AssociationDTO associationDTO) {
+        try {
+            return new ResponseEntity<>(associationService.updateAssociation(id, associationDTO), HttpStatus.OK);
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AssociationDTO> getAssociation(@PathVariable Long id) {
+        try {
+            return new ResponseEntity<>(associationService.retrieveAssociation(id), HttpStatus.OK);
         } catch (Exception e) {
             throw new IllegalArgumentException();
         }
