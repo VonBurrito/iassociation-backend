@@ -9,6 +9,8 @@ import org.iassociation.util.ModelMapperUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +19,8 @@ import java.util.Optional;
  * @author Hamza Amentag
  * @since 7/14/2022
  */
+@Service
+@Transactional
 public class SubsidyRequestServiceImpl implements SubsidyRequestService {
 
     private SubsidyRequestRepository subsidyRequestRepository;

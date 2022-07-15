@@ -5,6 +5,7 @@ import org.iassociation.service.itf.SubsidyRequestService;
 import org.iassociation.util.ModelMapperUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,8 @@ import java.util.List;
  * @author Hamza Amentag
  * @since 7/16/2022
  */
+@RestController
+@RequestMapping(value = "/subsidyrequest", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SubsidyRequestController {
 
     private SubsidyRequestService subsidyRequestService;
