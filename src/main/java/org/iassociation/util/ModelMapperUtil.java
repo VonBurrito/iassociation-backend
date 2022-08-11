@@ -1,8 +1,12 @@
 package org.iassociation.util;
 
 import org.iassociation.dto.AssociationDTO;
+import org.iassociation.dto.AuthorizationRequestDTO;
+import org.iassociation.dto.MemberDTO;
 import org.iassociation.dto.SubsidyRequestDTO;
 import org.iassociation.model.Association;
+import org.iassociation.model.AuthorizationRequest;
+import org.iassociation.model.Member;
 import org.iassociation.model.SubsidyRequest;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -58,6 +62,40 @@ public class ModelMapperUtil {
 
     public List<SubsidyRequestDTO> mapSubsidyRequestsToList(List<SubsidyRequest> subsidyRequests) {
         List<SubsidyRequestDTO> entityToDtoList = modelMapper.map(subsidyRequests, new TypeToken<List<SubsidyRequest>>() {
+        }.getType());
+        return entityToDtoList;
+    }
+
+    public AuthorizationRequestDTO mapToDto(AuthorizationRequest authorizationRequest) {
+        AuthorizationRequestDTO authorizationRequestDTO = modelMapper.map(authorizationRequest, AuthorizationRequestDTO.class);
+        return authorizationRequestDTO;
+    }
+
+    public AuthorizationRequest mapToEntity(AuthorizationRequestDTO authorizationRequestDTO) {
+        AuthorizationRequest authorizationRequest = modelMapper.map(authorizationRequestDTO, AuthorizationRequest.class);
+        return authorizationRequest;
+    }
+
+    public List<AuthorizationRequestDTO> mapAuthorizationRequestsToList(List<AuthorizationRequest> authorizationRequests) {
+        List<AuthorizationRequestDTO> entityToDtoList = modelMapper.map(authorizationRequests, new TypeToken<List<AuthorizationRequest>>() {
+        }.getType());
+        return entityToDtoList;
+    }
+
+    ///////////////////////////
+
+    public MemberDTO mapToDto(Member member) {
+        MemberDTO memberDTO = modelMapper.map(member, MemberDTO.class);
+        return memberDTO;
+    }
+
+    public Member mapToEntity(MemberDTO memberDTO) {
+        Member member = modelMapper.map(memberDTO, Member.class);
+        return member;
+    }
+
+    public List<MemberDTO> mapMembersToList(List<Member> members) {
+        List<MemberDTO> entityToDtoList = modelMapper.map(members, new TypeToken<List<Member>>() {
         }.getType());
         return entityToDtoList;
     }

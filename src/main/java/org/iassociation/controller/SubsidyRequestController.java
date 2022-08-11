@@ -1,6 +1,7 @@
 package org.iassociation.controller;
 
 import org.iassociation.dto.SubsidyRequestDTO;
+import org.iassociation.exception.ApiRequestException;
 import org.iassociation.service.itf.SubsidyRequestService;
 import org.iassociation.util.ModelMapperUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,10 @@ import java.util.List;
  * @since 7/16/2022
  */
 @RestController
-@RequestMapping(value = "/subsidyrequest", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/subsidyrequests", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SubsidyRequestController {
 
     private SubsidyRequestService subsidyRequestService;
-
     private ModelMapperUtil modelMapperUtil;
 
     @Autowired
@@ -37,27 +37,28 @@ public class SubsidyRequestController {
     public ResponseEntity<SubsidyRequestDTO> addSubsidyRequest(@RequestBody SubsidyRequestDTO subsidyRequestDTO) {
         try {
             return new ResponseEntity<>(subsidyRequestService.addSubsidyRequest(subsidyRequestDTO), HttpStatus.OK);
-        } catch (Exception e) {
-            return null;
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 
     @GetMapping
-    public List<SubsidyRequestDTO> getAllAssociations() {
+    public ResponseEntity<List<SubsidyRequestDTO>> getAllAssociations() {
         try {
             subsidyRequestService.getSubsidyRequest();
-            return subsidyRequestService.getSubsidyRequest();
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
+            return new ResponseEntity<>(subsidyRequestService.getSubsidyRequest(), HttpStatus.OK);
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteSubsidyRequest(@PathVariable Long id) {
+    public ResponseEntity<String> deleteSubsidyRequest(@PathVariable Long id) {
         try {
-            subsidyRequestService.deleteAssociation(id);
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
+            subsidyRequestService.deleteSubsidyRequest(id);
+            return new ResponseEntity<>("The subsidy request with id: " + id + " has been deleted.", HttpStatus.OK);
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 
@@ -66,8 +67,8 @@ public class SubsidyRequestController {
         try {
             return new ResponseEntity<>(subsidyRequestService.updateAssociation(id, subsidyRequestDTO), HttpStatus.OK);
 
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 
@@ -75,8 +76,8 @@ public class SubsidyRequestController {
     public ResponseEntity<SubsidyRequestDTO> getSubsidyRequest(@PathVariable Long id) {
         try {
             return new ResponseEntity<>(subsidyRequestService.retrieveSubsidyRequest(id), HttpStatus.OK);
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 }

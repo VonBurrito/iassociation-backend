@@ -24,5 +24,5 @@ public interface SubsidyRequestService {
 
     public SubsidyRequestDTO updateAssociation(Long id, SubsidyRequestDTO subsidyRequestDTO);
 
-    public void deleteAssociation(Long id);
+    public void deleteSubsidyRequest(Long id);
 }

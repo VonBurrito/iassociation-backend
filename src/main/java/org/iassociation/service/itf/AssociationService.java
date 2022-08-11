@@ -14,7 +14,6 @@ public interface AssociationService {
 
     public Page<AssociationDTO> getAllAuthorsByPagination(Optional<Integer> page, Optional<Integer> size, Optional<String> sortBy);
 
-
     public AssociationDTO retrieveAssociation(Long id);
 
     public AssociationDTO updateAssociation(Long id, AssociationDTO associationDTO);

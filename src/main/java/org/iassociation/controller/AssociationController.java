@@ -1,6 +1,7 @@
 package org.iassociation.controller;
 
 import org.iassociation.dto.AssociationDTO;
+import org.iassociation.exception.ApiRequestException;
 import org.iassociation.model.Association;
 import org.iassociation.service.itf.AssociationService;
 import org.iassociation.util.ModelMapperUtil;
@@ -37,8 +38,8 @@ public class AssociationController {
     public ResponseEntity<AssociationDTO> addAssociation(@RequestBody AssociationDTO associationDTO) {
         try {
             return new ResponseEntity<>(associationService.addAssociation(associationDTO), HttpStatus.OK);
-        } catch (Exception e) {
-            return null;
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 
@@ -47,8 +48,8 @@ public class AssociationController {
         try {
             associationService.getAssociations();
             return associationService.getAssociations();
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 
@@ -56,8 +57,8 @@ public class AssociationController {
     public void deleteAssociation(@PathVariable Long id) {
         try {
             associationService.deleteAssociation(id);
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 
@@ -66,8 +67,8 @@ public class AssociationController {
         try {
             return new ResponseEntity<>(associationService.updateAssociation(id, associationDTO), HttpStatus.OK);
 
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 
@@ -75,8 +76,8 @@ public class AssociationController {
     public ResponseEntity<AssociationDTO> getAssociation(@PathVariable Long id) {
         try {
             return new ResponseEntity<>(associationService.retrieveAssociation(id), HttpStatus.OK);
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException();
         }
     }
 }

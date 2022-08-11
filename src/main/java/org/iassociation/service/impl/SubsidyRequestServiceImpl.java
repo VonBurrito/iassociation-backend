@@ -80,7 +80,7 @@ public class SubsidyRequestServiceImpl implements SubsidyRequestService {
     }
 
     @Override
-    public void deleteAssociation(Long id) {
+    public void deleteSubsidyRequest(Long id) {
         if (subsidyRequestRepository.findById(id).isPresent()) {
             subsidyRequestRepository.deleteById(id);
         }

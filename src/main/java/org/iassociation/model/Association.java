@@ -51,22 +51,16 @@ public class Association extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "association")
     private Set<SubsidyRequest> subsidyRequests;
 
+    @OneToMany(mappedBy = "association")
+    private Set<AuthorizationRequest> authorizationRequests;
+
+    @OneToMany(mappedBy = "association")
+    private Set<Member> members;
+
     public Association() {
     }
 
-    public Association(String name, String address, String email, String phone, String objectifs, String admissionRequirements, Status status, String documents) {
-        super();
-        this.name = name;
-        this.address = address;
-        this.email = email;
-        this.phone = phone;
-        this.objectifs = objectifs;
-        this.admissionRequirements = admissionRequirements;
-        this.status = status;
-        this.documents = documents;
-    }
-
-    public Association(String name, String address, String email, String phone, String objectifs, String admissionRequirements, Status status, String documents, Set<SubsidyRequest> subsidyRequests) {
+    public Association(String name, String address, String email, String phone, String objectifs, String admissionRequirements, Status status, String documents, Set<SubsidyRequest> subsidyRequests, Set<AuthorizationRequest> authorizationRequests, Set<Member> members) {
         this.name = name;
         this.address = address;
         this.email = email;
@@ -76,6 +70,8 @@ public class Association extends BaseEntity implements Serializable {
         this.status = status;
         this.documents = documents;
         this.subsidyRequests = subsidyRequests;
+        this.authorizationRequests = authorizationRequests;
+        this.members = members;
     }
 
     public String getName() {
@@ -140,5 +136,29 @@ public class Association extends BaseEntity implements Serializable {
 
     public void setDocuments(String documents) {
         this.documents = documents;
+    }
+
+    public Set<SubsidyRequest> getSubsidyRequests() {
+        return subsidyRequests;
+    }
+
+    public void setSubsidyRequests(Set<SubsidyRequest> subsidyRequests) {
+        this.subsidyRequests = subsidyRequests;
+    }
+
+    public Set<AuthorizationRequest> getAuthorizationRequests() {
+        return authorizationRequests;
+    }
+
+    public void setAuthorizationRequests(Set<AuthorizationRequest> authorizationRequests) {
+        this.authorizationRequests = authorizationRequests;
+    }
+
+    public Set<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Set<Member> members) {
+        this.members = members;
     }
 }
