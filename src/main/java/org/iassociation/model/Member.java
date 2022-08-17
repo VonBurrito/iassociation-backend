@@ -53,6 +53,10 @@ public class Member extends BaseEntity {
     @JoinColumn(name = "association_id", nullable = true)
     private Association association;
 
+    @ManyToOne
+    @JoinColumn(name = "executive_committee_id", nullable = true)
+    private ExecutiveCommittee executiveCommittee;
+
     //no-args constructor for jpa
     public Member() {
     }

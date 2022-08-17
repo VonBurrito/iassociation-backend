@@ -2,7 +2,6 @@ package org.iassociation.controller;
 
 import org.iassociation.dto.AssociationDTO;
 import org.iassociation.exception.ApiRequestException;
-import org.iassociation.model.Association;
 import org.iassociation.service.itf.AssociationService;
 import org.iassociation.util.ModelMapperUtil;
 import org.springframework.beans.factory.annotation.Autowired;

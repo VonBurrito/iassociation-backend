@@ -1,13 +1,7 @@
 package org.iassociation.util;
 
-import org.iassociation.dto.AssociationDTO;
-import org.iassociation.dto.AuthorizationRequestDTO;
-import org.iassociation.dto.MemberDTO;
-import org.iassociation.dto.SubsidyRequestDTO;
-import org.iassociation.model.Association;
-import org.iassociation.model.AuthorizationRequest;
-import org.iassociation.model.Member;
-import org.iassociation.model.SubsidyRequest;
+import org.iassociation.dto.*;
+import org.iassociation.model.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +90,24 @@ public class ModelMapperUtil {
 
     public List<MemberDTO> mapMembersToList(List<Member> members) {
         List<MemberDTO> entityToDtoList = modelMapper.map(members, new TypeToken<List<Member>>() {
+        }.getType());
+        return entityToDtoList;
+    }
+
+    /////////////////////////////////////////
+
+    public EventDTO mapToDto(Event event) {
+        EventDTO eventDTO = modelMapper.map(event, EventDTO.class);
+        return eventDTO;
+    }
+
+    public Event mapToEntity(EventDTO eventDTO) {
+        Event event = modelMapper.map(eventDTO, Event.class);
+        return event;
+    }
+
+    public List<EventDTO> mapEventsToList(List<Event> events) {
+        List<EventDTO> entityToDtoList = modelMapper.map(events, new TypeToken<List<Member>>() {
         }.getType());
         return entityToDtoList;
     }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-public class Association extends BaseEntity implements Serializable {
+public class Association extends BaseEntity {
 
     @NotNull
     @Size(min = 5, max = 30)
@@ -57,6 +57,12 @@ public class Association extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "association")
     private Set<Member> members;
 
+    @ManyToMany
+    @JoinTable(
+            name = "association_event",
+            joinColumns = @JoinColumn(name = "association_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id"))
+    private Set<Event> events;
     public Association() {
     }
 

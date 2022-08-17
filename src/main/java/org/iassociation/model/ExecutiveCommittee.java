@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "EXECUTIVE_COMMITTEE")
 public class ExecutiveCommittee extends BaseEntity {
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "executiveCommittee")
     private Set<Member> members;
 
 }

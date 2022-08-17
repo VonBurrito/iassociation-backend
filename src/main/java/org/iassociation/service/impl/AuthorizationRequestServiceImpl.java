@@ -26,7 +26,7 @@ import java.util.Optional;
 public class AuthorizationRequestServiceImpl implements AuthorizationRequestService {
 
     private AuthorizationRequestRepository authorizationRequestRepository;
-    ;
+
     private ModelMapper modelMapper;
     private ModelMapperUtil modelMapperUtil;
 

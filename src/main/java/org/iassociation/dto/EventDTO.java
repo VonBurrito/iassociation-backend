@@ -1,32 +1,40 @@
-package org.iassociation.model;
+package org.iassociation.dto;
 
-import org.iassociation.model.BaseEntity;
+import org.iassociation.model.Association;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
-/**
- * @author Hamza Amentag
- * @since 7/15/2022
- */
-@Entity
-public class Event extends BaseEntity {
+public class EventDTO {
 
+    private Long id;
     private String eventType;
     private String eventDesc;
-
     private LocalDate eventDate;
-
     private String address;
-
-    @ManyToMany(mappedBy = "events")
     private Set<Association> associations;
 
+    public EventDTO() {
+    }
 
-    public Event() {
+    public EventDTO(Long id, String eventType, String eventDesc, LocalDate eventDate, String address, Set<Association> associations) {
+        this.id = id;
+        this.eventType = eventType;
+        this.eventDesc = eventDesc;
+        this.eventDate = eventDate;
+        this.address = address;
+        this.associations = associations;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEventType() {
@@ -59,5 +67,13 @@ public class Event extends BaseEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<Association> getAssociations() {
+        return associations;
+    }
+
+    public void setAssociations(Set<Association> associations) {
+        this.associations = associations;
     }
 }
