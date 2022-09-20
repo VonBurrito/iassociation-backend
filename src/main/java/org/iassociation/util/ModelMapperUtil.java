@@ -55,7 +55,7 @@ public class ModelMapperUtil {
     }
 
     public List<SubsidyRequestDTO> mapSubsidyRequestsToList(List<SubsidyRequest> subsidyRequests) {
-        List<SubsidyRequestDTO> entityToDtoList = modelMapper.map(subsidyRequests, new TypeToken<List<SubsidyRequest>>() {
+        List<SubsidyRequestDTO> entityToDtoList = modelMapper.map(subsidyRequests, new TypeToken<List<SubsidyRequestDTO>>() {
         }.getType());
         return entityToDtoList;
     }
@@ -107,7 +107,7 @@ public class ModelMapperUtil {
     }
 
     public List<EventDTO> mapEventsToList(List<Event> events) {
-        List<EventDTO> entityToDtoList = modelMapper.map(events, new TypeToken<List<Member>>() {
+        List<EventDTO> entityToDtoList = modelMapper.map(events, new TypeToken<List<Event>>() {
         }.getType());
         return entityToDtoList;
     }

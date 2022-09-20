@@ -1,13 +1,8 @@
 package org.iassociation.dto;
 
 import org.iassociation.model.Association;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.ManyToMany;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
-
 public class EventDTO {
 
     private Long id;
@@ -22,6 +17,14 @@ public class EventDTO {
 
     public EventDTO(Long id, String eventType, String eventDesc, LocalDate eventDate, String address, Set<Association> associations) {
         this.id = id;
+        this.eventType = eventType;
+        this.eventDesc = eventDesc;
+        this.eventDate = eventDate;
+        this.address = address;
+        this.associations = associations;
+    }
+
+    public EventDTO(String eventType, String eventDesc, LocalDate eventDate, String address, Set<Association> associations) {
         this.eventType = eventType;
         this.eventDesc = eventDesc;
         this.eventDate = eventDate;

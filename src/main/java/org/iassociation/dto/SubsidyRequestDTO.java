@@ -24,6 +24,12 @@ public class SubsidyRequestDTO {
         this.status = status;
     }
 
+    public SubsidyRequestDTO(String description, Association association, Status status) {
+        this.description = description;
+        this.association = association;
+        this.status = status;
+    }
+
     public Long getId() {
         return id;
     }

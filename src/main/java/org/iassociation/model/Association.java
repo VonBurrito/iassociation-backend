@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -48,7 +47,8 @@ public class Association extends BaseEntity {
     @Column(nullable = false)
     private String documents;
 
-    @OneToMany(mappedBy = "association")
+    @OneToMany(mappedBy = "association", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<SubsidyRequest> subsidyRequests;
 
     @OneToMany(mappedBy = "association")
@@ -75,7 +75,7 @@ public class Association extends BaseEntity {
         this.admissionRequirements = admissionRequirements;
         this.status = status;
         this.documents = documents;
-        this.subsidyRequests = subsidyRequests;
+//        this.subsidyRequests = subsidyRequests;
         this.authorizationRequests = authorizationRequests;
         this.members = members;
     }
@@ -144,13 +144,13 @@ public class Association extends BaseEntity {
         this.documents = documents;
     }
 
-    public Set<SubsidyRequest> getSubsidyRequests() {
-        return subsidyRequests;
-    }
-
-    public void setSubsidyRequests(Set<SubsidyRequest> subsidyRequests) {
-        this.subsidyRequests = subsidyRequests;
-    }
+//    public Set<SubsidyRequest> getSubsidyRequests() {
+//        return subsidyRequests;
+//    }
+//
+//    public void setSubsidyRequests(Set<SubsidyRequest> subsidyRequests) {
+//        this.subsidyRequests = subsidyRequests;
+//    }
 
     public Set<AuthorizationRequest> getAuthorizationRequests() {
         return authorizationRequests;

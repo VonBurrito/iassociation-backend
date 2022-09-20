@@ -1,8 +1,8 @@
 package org.iassociation.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -16,22 +16,14 @@ public class SubsidyRequest extends BaseEntity {
     @NotNull
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "association_id", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "association_id", nullable = false)
     private Association association;
 
     private Status status;
 
     public SubsidyRequest() {
-    }
-
-    public SubsidyRequest(Association association) {
-        super();
-        this.association = association;
-    }
-
-    public Association getAssociation() {
-        return association;
+        // TODO document why this constructor is empty
     }
 
     public void setAssociation(Association association) {
@@ -52,19 +44,5 @@ public class SubsidyRequest extends BaseEntity {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        SubsidyRequest that = (SubsidyRequest) o;
-        return Objects.equals(association, that.association);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), association);
     }
 }

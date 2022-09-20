@@ -17,16 +17,21 @@ public class Event extends BaseEntity {
 
     private String eventType;
     private String eventDesc;
-
     private LocalDate eventDate;
-
     private String address;
-
     @ManyToMany(mappedBy = "events")
     private Set<Association> associations;
 
 
     public Event() {
+    }
+
+    public Event(String eventType, String eventDesc, LocalDate eventDate, String address, Set<Association> associations) {
+        this.eventType = eventType;
+        this.eventDesc = eventDesc;
+        this.eventDate = eventDate;
+        this.address = address;
+        this.associations = associations;
     }
 
     public String getEventType() {
@@ -59,5 +64,13 @@ public class Event extends BaseEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<Association> getAssociations() {
+        return associations;
+    }
+
+    public void setAssociations(Set<Association> associations) {
+        this.associations = associations;
     }
 }
