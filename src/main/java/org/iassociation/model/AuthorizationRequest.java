@@ -9,6 +9,7 @@ import org.iassociation.util.LocalDateTimeSerializer;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
@@ -25,8 +26,8 @@ public class AuthorizationRequest extends BaseEntity {
     @DateTimeFormat(pattern = DateProcessor.DATE_FORMAT)
     private LocalDate eventDate;
 
-    @ManyToOne
-    @JoinColumn(name = "association_id", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "association_id", nullable = false)
     private Association association;
 
     public AuthorizationRequest() {
@@ -48,11 +49,11 @@ public class AuthorizationRequest extends BaseEntity {
         this.eventDate = eventDate;
     }
 
-    public Association getAssociation() {
-        return association;
-    }
-
-    public void setAssociation(Association association) {
-        this.association = association;
-    }
+//    public Association getAssociation() {
+//        return association;
+//    }
+//
+//    public void setAssociation(Association association) {
+//        this.association = association;
+//    }
 }

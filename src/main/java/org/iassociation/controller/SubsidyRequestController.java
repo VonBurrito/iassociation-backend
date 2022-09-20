@@ -45,7 +45,7 @@ public class SubsidyRequestController {
     @GetMapping
     public ResponseEntity<List<SubsidyRequestDTO>> getAllAssociations() {
         try {
-            subsidyRequestService.getSubsidyRequest();
+
             return new ResponseEntity<>(subsidyRequestService.getSubsidyRequest(), HttpStatus.OK);
         } catch (ApiRequestException e) {
             throw new ApiRequestException();

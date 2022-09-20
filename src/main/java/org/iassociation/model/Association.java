@@ -51,7 +51,8 @@ public class Association extends BaseEntity {
             cascade = CascadeType.ALL)
     private Set<SubsidyRequest> subsidyRequests;
 
-    @OneToMany(mappedBy = "association")
+    @OneToMany(mappedBy = "association", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<AuthorizationRequest> authorizationRequests;
 
     @OneToMany(mappedBy = "association")
